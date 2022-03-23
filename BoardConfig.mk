@@ -41,13 +41,12 @@ TARGET_NO_BOOTLOADER := true
 TARGET_USES_UEFI := true
 
 # Platform
-TARGET_BOARD_PLATFORM := xiaomi_sm8250
+TARGET_BOARD_PLATFORM := sony_sm8250
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno650
-QCOM_BOARD_PLATFORMS += xiaomi_sm8250
+QCOM_BOARD_PLATFORMS += sony_sm8250
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm androidboot.usbconfigfs=true
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm androidboot.usbconfigfs=true androidboot.selinux=permissive buildvariant=eng
 BOARD_KERNEL_HEADER_VERSION := 2
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
@@ -91,13 +90,13 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
 # Partitions
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 134217728
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x06000000
 
 # Dynamic Partition
-BOARD_SUPER_PARTITION_SIZE := 9126805504
-BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
-BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 9126805504
-BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := product vendor system system_ext odm
+BOARD_SUPER_PARTITION_SIZE := 12884901888
+BOARD_SUPER_PARTITION_GROUPS := somc_dynamic_partitions
+BOARD_SOMC_DYNAMIC_PARTITIONS_SIZE := 6438256640
+BOARD_SOMC_DYNAMIC_PARTITIONS_PARTITION_LIST := product vendor system system_ext odm
 
 # System as root
 BOARD_ROOT_EXTRA_FOLDERS := bluetooth dsp firmware persist
@@ -162,7 +161,7 @@ TARGET_USES_LOGD := true
 TW_NO_SCREEN_BLANK := true
 PLATFORM_VERSION := 11
 TW_HAS_EDL_MODE := false
-TW_SUPPORT_INPUT_AIDL_HAPTICS :=true
+TW_SUPPORT_INPUT_AIDL_HAPTICS := false
 
 ALLOW_MISSING_DEPENDENCIES := true
 

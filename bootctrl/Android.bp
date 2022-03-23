@@ -15,7 +15,7 @@
 //
 
 cc_library {
-    name: "bootctrl.xiaomi_sm8250",
+    name: "bootctrl.sony_sm8250",
     defaults: ["bootctrl_hal_defaults"],
-    static_libs: ["libgptutils.xiaomi_sm8250"],
+    static_libs: ["libgptutils.sony_sm8250"],
 }

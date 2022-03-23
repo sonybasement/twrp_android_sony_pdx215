@@ -15,8 +15,8 @@
 #
 
 PRODUCT_PACKAGES += \
-    bootctrl.xiaomi_sm8250 \
-    bootctrl.xiaomi_sm8250.recovery \
+    bootctrl.sony_sm8250 \
+    bootctrl.sony_sm8250.recovery \
     android.hardware.boot@1.0-service \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-impl.recovery \
@@ -36,15 +36,8 @@ PRODUCT_SOONG_NAMESPACES += \
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# otacert
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(DEVICE_PATH)/security/magisk \
-    $(DEVICE_PATH)/security/miui_releasekey
-
 # PRODUCT_RELEASE_NAME ro.twrp.device.name
 PRODUCT_PROPERTY_OVERRIDES += ro.twrp.device.name=$(PRODUCT_RELEASE_NAME)
 
 PRODUCT_COPY_FILES += \
-    $(OUT_DIR)/target/product/umi/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/prebuilt/$(PRODUCT_RELEASE_NAME)/modules,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules) \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/prebuilt/$(PRODUCT_RELEASE_NAME)/firmware,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware)
+    $(OUT_DIR)/target/product/pdx203/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
