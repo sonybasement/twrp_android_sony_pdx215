@@ -108,11 +108,20 @@ service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service
     group system input
     seclabel u:r:recovery:s0
 
+service unified-script /system/bin/unified-script.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
 on boot
     start vendor.qti.vibrator
     start health-hal-2-1
     start boot-hal-1-0
     setprop sys.usb.config adb
+    chmod 0777 /system/bin/unified-script.sh
+    start unified-script
 
 on property:crypto.ready=0
     stop vendor.qseecomd

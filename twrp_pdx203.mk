@@ -30,6 +30,6 @@ $(call inherit-product, $(DEVICE_PATH)/device.mk)
 PRODUCT_DEVICE := pdx203
 PRODUCT_NAME := twrp_pdx203
 PRODUCT_BRAND := Sony
-PRODUCT_MODEL := XPERIA 1 II
+PRODUCT_MODEL := Xperia 1 II
 PRODUCT_MANUFACTURER := Sony
 

@@ -15,10 +15,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_cmi.mk \
-    $(LOCAL_DIR)/twrp_cas.mk \
-    $(LOCAL_DIR)/twrp_pdx203.mk \
-    $(LOCAL_DIR)/twrp_lmi.mk \
-    $(LOCAL_DIR)/twrp_apollo.mk
+    $(LOCAL_DIR)/twrp_pdx203.mk
 
-
+COMMON_LUNCH_CHOICES := \
+    twrp_pdx203-user \
+    twrp_pdx203-userdebug \
+    twrp_pdx203-eng

@@ -1,3 +1,4 @@
+2022.03.23 Based on MI 10P
 # android_device_xiaomi_umi_TWRP
 For building TWRP for Xiaomi Mi 10 / 10 Pro
 
