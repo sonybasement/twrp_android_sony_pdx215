@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2013,2016,2020 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -79,12 +79,9 @@ extern "C" {
 #define AB_SLOT_A_SUFFIX                "_a"
 #define AB_SLOT_B_SUFFIX                "_b"
 #define PTN_XBL                         "xbl"
-#define PTN_SWAP_LIST                   PTN_XBL, \
-            "abl", "aop", "apdp", "cmnlib", "cmnlib64", \
-            "devcfg", "dtbo", "hyp", "keymaster", "msadp", \
-            "qupfw", "storsec", "tz", "vbmeta", "vbmeta_system", "xbl_config"
-
-#define AB_PTN_LIST PTN_SWAP_LIST, "boot", "system", "vendor", "modem", "system_ext", "product"
+#define PTN_XBL_CFG                     "xbl_config"
+#define PTN_SWAP_LIST                   PTN_XBL, PTN_XBL_CFG, "abl", "aop", "cmnlib", "cmnlib64", "devcfg", "dsp", "dtbo", "featenabler", "hyp", "imagefv", "keymaster", "qupfw", "tz", "uefisecapp", "vbmeta", "vbmeta_system"
+#define AB_PTN_LIST PTN_SWAP_LIST, "bluetooth", "boot", "modem", "odm", "product", "system", "system_ext", "vendor", "vendor_boot"
 #define BOOT_DEV_DIR    "/dev/block/bootdevice/by-name"
 
 /******************************************************************************
@@ -186,8 +183,8 @@ int gpt_utils_set_xbl_boot_partition(enum boot_chain chain);
 //Given a vector of partition names as a input and a reference to a map,
 //populate the map to indicate which physical disk each of the partitions
 //sits on. The key in the map is the path to the block device where the
-//partition lies and the value is a vector of strings indicating which of
-//the passed in partition names sits on that device.
+//partiton lies and the value is a vector of strings indicating which of
+//the passed in partiton names sits on that device.
 int gpt_utils_get_partition_map(std::vector<std::string>& partition_list,
                 std::map<std::string,std::vector<std::string>>& partition_map);
 #ifdef __cplusplus

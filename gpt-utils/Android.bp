@@ -32,8 +32,5 @@ cc_library {
         "gpt-utils.cpp",
     ],
     owner: "qti",
-    header_libs: [
-        "device_kernel_headers",
-    ],
     export_include_dirs: ["."],
 }
