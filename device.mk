@@ -14,6 +14,17 @@
 # limitations under the License.
 #
 # A/B support
+AB_OTA_UPDATER := true
+
+AB_OTA_PARTITIONS += \
+    boot \
+    system \
+    product \
+    vendor \
+    vbmeta \
+    vbmeta_system \
+    dtbo
+    
 PRODUCT_PACKAGES += \
     otapreopt_script \
     update_engine \
