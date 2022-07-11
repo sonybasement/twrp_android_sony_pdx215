@@ -155,7 +155,7 @@ TW_MAX_BRIGHTNESS := 2047
 ifeq ($(TW_DEFAULT_LANGUAGE),)
 TW_DEFAULT_LANGUAGE := zh_CN
 endif
-TW_LOAD_VENDOR_MODULES := "sec_touchscreen.ko texfat.ko platform_dlkm.ko swr_ctrl_dlkm.ko tcs3490.ko bu520x1nvx.ko"
+TW_LOAD_VENDOR_MODULES := true
 TW_DEFAULT_BRIGHTNESS := 300
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
