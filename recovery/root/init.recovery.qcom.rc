@@ -115,6 +115,12 @@ service unified-script /system/bin/unified-script.sh
     oneshot
     seclabel u:r:recovery:s0
 
+service boot-hal-1-0 /system/bin/android.hardware.boot@1.0-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
 on boot
     start vendor.qti.vibrator
     start health-hal-2-1
