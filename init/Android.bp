@@ -1,0 +1,15 @@
+cc_library_static {
+    name: "libinit_sony",
+    header_libs: [
+        "libbase_headers",
+    ],
+    cflags: [
+        "-Wall",
+//      "-DBUILD_FOR_SONY",
+    ],
+    static_libs: [
+        "libbase",
+    ],
+    srcs: ["init_sony.cpp"],
+    recovery_available: true,
+}

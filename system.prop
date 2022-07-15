@@ -10,6 +10,5 @@ ro.charger.enable_suspend=1
 # Timezone
 persist.sys.timezone=Asia/Shanghai
 
-ro.display.series=Xperia 1 II
 ro.boot.dynamic_partitions=true
 
