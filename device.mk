@@ -46,9 +46,6 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl.recovery \
     fastbootd
 
-PRODUCT_HOST_PACKAGES += \
-    libandroidicu
-
 # SHIPPING API
 PRODUCT_SHIPPING_API_LEVEL := 29
 # VNDK API
@@ -62,6 +59,3 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # PRODUCT_RELEASE_NAME ro.twrp.device.name
 PRODUCT_PROPERTY_OVERRIDES += ro.twrp.device.name=$(PRODUCT_RELEASE_NAME)
-
-PRODUCT_COPY_FILES += \
-    $(OUT_DIR)/target/product/pdx203/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
