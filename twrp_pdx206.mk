@@ -16,7 +16,7 @@
 
 # Release name
 PRODUCT_RELEASE_NAME := pdx206
-DEVICE_PATH := device/sony/pdx206
+DEVICE_PATH := device/sony/pdx20x
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_minimal.mk)
 
@@ -27,7 +27,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_minimal.mk)
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := pdx206
+PRODUCT_DEVICE := pdx20x
 PRODUCT_NAME := twrp_pdx206
 PRODUCT_BRAND := Sony
 PRODUCT_MODEL := Xperia 5 II
