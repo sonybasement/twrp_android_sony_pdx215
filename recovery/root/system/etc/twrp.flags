@@ -4,7 +4,7 @@
 
 # super
 /system                    ext4                /dev/block/mapper/system_a                             flags=display="System";
-/system_ext                ext4                /dev/block/mapper/system_ext_a                           flags=display="System_Ext";
+/system_ext                ext4                /dev/block/mapper/system_ext_a                         flags=display="System_Ext";
 /vendor                    ext4                /dev/block/mapper/vendor_a                             flags=display="Vendor";
 /product                   ext4                /dev/block/mapper/product_a                            flags=display="Product";
 /odm                       ext4                /dev/block/mapper/odm_a                                flags=display="Odm";
