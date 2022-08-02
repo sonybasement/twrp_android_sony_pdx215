@@ -46,6 +46,9 @@ on fs
     chmod 0664 /dev/ion
     chown system system /dev/ion
     insmod /vendor/lib/modules/sec_touchscreen.ko
+    insmod /vendor/lib/modules/texfat.ko
+    insmod /vendor/lib/modules/tcs3490.ko
+    insmod /vendor/lib/modules/bu520x1nvx.ko
     install_keyring
 
 on early-fs
