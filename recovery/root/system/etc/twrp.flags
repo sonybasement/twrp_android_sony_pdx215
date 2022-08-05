@@ -1,6 +1,6 @@
 # mount point	          fstype               device         device2                                flags
 /metadata                  ext4                /dev/block/by-name/metadata                            flags=display="metadata";wrappedkey;backup=1
-/data                      f2fs                /dev/block/bootdevice/by-name/userdata                 flags=fileencryption=ice;wrappedkey;keydirectory=/metadata/vold/metadata_encryption
+/data                      f2fs                /dev/block/bootdevice/by-name/userdata                 flags=fileencryption=ice;wrappedkey;
 
 # super
 /system                    ext4                /dev/block/mapper/system_a                             flags=display="System";

@@ -14,9 +14,15 @@
 # limitations under the License.
 #
 
-# Enable project quotas and casefolding for emulated storage without sdcardfs
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-    
+# Configure base.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+
+# Configure core_64_bit_only.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
+
+# Configure twrp
+$(call inherit-product, vendor/twrp/config/common.mk)
+
 # A/B support
 AB_OTA_UPDATER := true
 
@@ -35,7 +41,6 @@ PRODUCT_PACKAGES += \
     update_engine_sideload \
     update_verifier
 
-
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
@@ -47,13 +52,10 @@ PRODUCT_PACKAGES += \
     bootctrl.sony_sm8250.recovery \
     android.hardware.boot@1.0-service \
     android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-impl.recovery \
-    fastbootd
+    android.hardware.boot@1.0-impl.recovery 
 
 # SHIPPING API
 PRODUCT_SHIPPING_API_LEVEL := 29
-# VNDK API
-PRODUCT_TARGET_VNDK_VERSION := 30
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \

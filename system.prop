@@ -1,5 +1,6 @@
 # ADB
 ro.adb.secure=0
+ro.boot.dynamic_partitions=true
 
 # Gatekeeper
 vendor.gatekeeper.disable_spu=true
@@ -9,6 +10,3 @@ ro.charger.enable_suspend=1
 
 # Timezone
 persist.sys.timezone=Asia/Shanghai
-
-ro.boot.dynamic_partitions=true
-

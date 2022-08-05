@@ -3,7 +3,7 @@
         manifest.xml
         framework_manifest.xml
 -->
-<manifest version="2.0" type="framework">
+<manifest version="4.0" type="framework">
     <hal format="hidl">
         <name>android.frameworks.displayservice</name>
         <transport>hwbinder</transport>
@@ -134,16 +134,6 @@
         </interface>
         <fqname>@1.0::ISystemEvent/default</fqname>
         <fqname>@1.0::ISystemResource/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.qti.hardware.wifi.keystore</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IKeystoreExt</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::IKeystoreExt/default</fqname>
     </hal>
     <system-sdk>
         <version>28</version>
