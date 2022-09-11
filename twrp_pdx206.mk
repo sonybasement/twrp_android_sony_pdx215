@@ -16,13 +16,13 @@
 
 # Release name
 PRODUCT_RELEASE_NAME := pdx206
-DEVICE_PATH := device/sony/pdx20x
+DEVICE_PATH := device/sony/pdx206
 
 # Inherit from hardware-specific part of the product configuration
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := pdx20x
+PRODUCT_DEVICE := pdx206
 PRODUCT_NAME := twrp_pdx206
 PRODUCT_BRAND := Sony
 PRODUCT_MODEL := Xperia 5 II

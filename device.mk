@@ -55,7 +55,13 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl.recovery 
 
 # SHIPPING API
-PRODUCT_SHIPPING_API_LEVEL := 29
+PRODUCT_SHIPPING_API_LEVEL := 30
+
+# Props for a Successful Casefold Format 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.crypto.dm_default_key.options_format.version=2 \
+    ro.crypto.volume.metadata.method=dm-default-key \
+    ro.crypto.volume.options=::v2 
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
