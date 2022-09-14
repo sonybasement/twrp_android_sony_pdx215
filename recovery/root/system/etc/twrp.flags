@@ -4,12 +4,9 @@
 
 # super
 /system                    ext4                /dev/block/mapper/system_a                             flags=display="System";
-/system_ext                ext4                /dev/block/mapper/system_ext_a                         flags=display="System_Ext";
 /vendor                    ext4                /dev/block/mapper/vendor_a                             flags=display="Vendor";
 /product                   ext4                /dev/block/mapper/product_a                            flags=display="Product";
 /odm                       ext4                /dev/block/mapper/odm_a                                flags=display="Odm";
-
-/oem                       ext4                /dev/block/bootdevice/by-name/oem                      flags=display="Oem";backup=1;flashimg=1;slotselect
 
 /boot                      emmc                /dev/block/bootdevice/by-name/boot                     flags=display="Boot";backup=1;flashimg=1;slotselect
 /recovery                  emmc                /dev/block/bootdevice/by-name/recovery                 flags=display="Recovery";backup=1;flashimg=1;slotselect
@@ -32,4 +29,5 @@
 /spunvm                    vfat                /dev/block/bootdevice/by-name/spunvm                   flags=display="spunvm";backup=1;fsflags="rw,noatime,shortname=lower,uid=1000,gid=1000,dmask=007,fmask=007,context=u:object_r:spunvm_file:s0 wait"
 
 # Removable storage
-/usb-otg                   auto                /dev/block/sdg1    /dev/block/sdg                      flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"
+/sdcard1                   auto               /dev/block/mmcblk0p1         /dev/block/mmcblk0        flags=fsflags=utf8;display="MicroSD";storage;wipeingui;removable
+/usbotg                    auto               /dev/block/sdb1              /dev/block/sdb            flags=fsflags=utf8;display="USB-Storage";storage;wipeingui;removable
