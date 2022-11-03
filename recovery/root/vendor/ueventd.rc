@@ -1,4 +1,5 @@
 # Copyright (c) 2012-2015, 2017-2020, The Linux Foundation. All rights reserved.
+# Copyright (C) 2021 Sony Corporation.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -24,6 +25,10 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+# NOTE: This file has been modified by Sony Corporation.
+# Modifications are licensed under the Sony Corporation.
+# End User License Agreement ("EULA"). Any use of the modifications is subject
+# to the terms of the EULA
 
 # Firmware directory Path
 # Below macro will be read by uevent and path will
@@ -33,8 +38,6 @@ firmware_directories /vendor/firmware_mnt/image/
 # the DIAG device node is not world writable/readable.
 /dev/diag                 0660   system     oem_2901
 /dev/mhi_*_pipe_4         0660   system     system
-
-/dev/xlog                 0660   system     audio
 
 /dev/genlock              0666   system     system
 /dev/wlan                 0660   wifi       wifi
@@ -61,6 +64,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/ipa_adpl             0660   system     oem_2905
 /dev/synx_device          0660   root       camera
 /dev/hab                  0666   system     system
+/dev/hgsl                 0666   system     system
 /dev/iio:device*          0664   system     system
 
 #permissions for UFS RPMB BSG device node
@@ -175,12 +179,37 @@ firmware_directories /vendor/firmware_mnt/image/
 #qvr
 /dev/qvr_external_sensor_ioctl      0660  system  system
 /sys/kernel/qvr_external_sensor/fd  0660  system  system
+/dev/bus/usb/001/002      0660   system     system
+/dev/bus/usb/001/003      0660   system     system
+/dev/bus/usb/001/004      0660   system     system
+/dev/bus/usb/001/005      0660   system     system
+/dev/bus/usb/002/002      0660   system     system
+/dev/bus/usb/002/003      0660   system     system
+/dev/bus/usb/002/004      0660   system     system
+/dev/bus/usb/002/005      0660   system     system
+/dev/bus/usb/003/002      0660   system     system
+/dev/bus/usb/003/003      0660   system     system
+/dev/bus/usb/003/004      0660   system     system
+/dev/bus/usb/003/005      0660   system     system
+/dev/hidraw0              0660   system     system
+/dev/hidraw1              0660   system     system
+/dev/hidraw2              0660   system     system
+/dev/hidraw3              0660   system     system
+/dev/hidraw4              0660   system     system
+/dev/hidraw5              0660   system     system
+/dev/hidraw6              0660   system     system
+/dev/hidraw7              0660   system     system
+/dev/hidraw8              0660   system     system
+/dev/hidraw9              0660   system     system
 
 # wlan
 /dev/wcnss_wlan           0660   system     system
 /dev/wcnss_ctrl           0660   system     system
 /sys/devices/soc/a000000.qcom,wcnss-wlan/net/wlan0/queues/rx-* rps_cpus           0660   system     system
 /sys/devices/soc/a000000.qcom,wcnss-wlan/net/p2p0/queues/rx-* rps_cpus            0660   system     system
+/sys/devices/platform/soc/*.qcom,icnss/net/wlan*/queues/rx-* rps_cpus             0660   system     system
+/sys/devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/net/wlan*/queues/rx-* rps_cpus      0660   system     system
+/sys/devices/platform/soc/17a10040.qcom,wcn6750/net/wlan*/queues/rx-* rps_cpus    0660   system     system
 /dev/spidev0.0            0660   system     audio
 /dev/i2c-7                0660   system     audio
 /dev/msm_camera/*         0660   system     camera
@@ -235,6 +264,8 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/i2c-5                0660   media       media
 /dev/avtimer              0660   system     audio
 /dev/spidev2.0            0660   system     audio
+/dev/spidev22.0           0660   system     audio
+/dev/spidev10.0           0660   system     audio
 
 # DVB devices
 /dev/dvb/adapter0/demux*  0440   media       media
@@ -308,17 +339,20 @@ firmware_directories /vendor/firmware_mnt/image/
 /sys/devices/virtual/net/bond0 queues/rx-0/rps_cpus 0660 system system
 
 #nfc permissions
-/dev/nfc-nci              0660    nfc         nfc
-/dev/nq-nci               0660    nfc         nfc
-/dev/assd                 0660    nfc         nfc
+#/dev/nfc-nci              0660    nfc         nfc
+#/dev/nq-nci               0660    nfc         nfc
+#/dev/assd                 0660    nfc         nfc
+
+# NFC
+/dev/pn553                 0660    nfc         nfc
+
+# eSE device
+/dev/p73                   0660   secure_element secure_element
 
 # UIO devices
 /dev/uio0                 0660   system     system
 /dev/uio1                 0660   system     system
 /dev/uio2                 0660   system     system
-
-#spi ir nodes
-/dev/ir_spi               0660   system     system
 
 # SSR devices
 /dev/subsys_*         0640   system     system
@@ -328,6 +362,9 @@ firmware_directories /vendor/firmware_mnt/image/
 
 # Ramdump devices
 /dev/ramdump*             0640   system     system
+
+# tzdbg
+/dev/tzdbg_*              0440   root       root
 
 # Fingerprint device
 /dev/qbt*                 0660   system     system
@@ -355,12 +392,6 @@ firmware_directories /vendor/firmware_mnt/image/
 # Kmsg device
 /dev/kmsg                                               0620   root       system
 
-# mius iio devices
-/dev/iio:device*                                        0660   system     system
-/sys/devices/platform/us_prox.0/iio:device* buffer/enable                  0600 system system
-/sys/devices/platform/us_prox.0/iio:device* scan_elements/in_proximity_en  0600 system system
-/sys/devices/platform/us_prox.0/iio:device* scan_elements/in_timestamp_en  0600 system system
-
 # LED class devices
 /sys/class/leds/red      delay_on     0640    system    system
 /sys/class/leds/red      delay_off    0640    system    system
@@ -387,6 +418,9 @@ firmware_directories /vendor/firmware_mnt/image/
 /sys/devices/system/memory/memory* state    0660 system system
 
 /sys/devices/virtual/hdcp/msm_hdcp  min_level_change 0664    system  graphics
+
+#KGSL
+/sys/class/kgsl/kgsl-3d0    perfcounter              0660    root    shell
 
 # sys-fs display
 /sys/class/graphics/fb*     hpd                      0664    system  graphics
@@ -418,6 +452,8 @@ firmware_directories /vendor/firmware_mnt/image/
 /sys/class/graphics/fb0     mode                     0664    system  graphics
 /sys/class/graphics/fb0     msm_cmd_autorefresh_en   0664    system  graphics
 */
+
+/sys/devices/platform/soc/ae00000.qcom,mdss_mdp power/control 0664 system graphics
 
 #asm330 sensor
 #common sensors files
@@ -479,3 +515,6 @@ firmware_directories /vendor/firmware_mnt/image/
 /sys/devices/platform/soc/*.i2c/i2c-*/*-*/iio:device*   in_temp_raw                     0664    system  system
 /sys/devices/platform/soc/*.i2c/i2c-*/*-*/iio:device*   in_temp_scale                   0664    system  system
 /sys/devices/platform/soc/*.i2c/i2c-*/*-*/iio:device*   in_temp_scale_available         0664    system  system
+
+# Fingerprint sensor device
+/dev/esfp0 0660 system system
