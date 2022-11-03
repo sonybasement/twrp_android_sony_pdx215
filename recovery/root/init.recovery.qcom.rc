@@ -97,9 +97,9 @@ service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qt
     seclabel u:r:recovery:s0
 
 service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service
+    user root
+    group root
     class hal
-    user system
-    group system input
     seclabel u:r:recovery:s0
 
 service boot-hal-1-0 /system/bin/android.hardware.boot@1.0-service
