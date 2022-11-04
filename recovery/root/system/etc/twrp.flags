@@ -1,9 +1,9 @@
 # mount point	          fstype               device         device2                                flags
-/metadata                  ext4                /dev/block/by-name/metadata                            flags=display="metadata";wrappedkey;backup=1
-/data                      f2fs                /dev/block/bootdevice/by-name/userdata                 flags=fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,metadata_encryption=aes-256-xts,keydirectory=/metadata/vold/metadata_encryption
+/metadata                  ext4                /dev/block/by-name/metadata                            flags=display="metadata";backup=1;wrappedkey
+/data                      f2fs                /dev/block/bootdevice/by-name/userdata                 flags=fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,metadata_encryption=aes-256-xts:wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption
 
 # super
-/system                    ext4                /dev/block/mapper/system_a                             flags=display="system";
+/system_ext                ext4                /dev/block/mapper/system_ext_a                         flags=display="system_ext";
 /vendor                    ext4                /dev/block/mapper/vendor_a                             flags=display="vendor";
 /product                   ext4                /dev/block/mapper/product_a                            flags=display="product";
 /odm                       ext4                /dev/block/mapper/odm_a                                flags=display="odm";
@@ -15,10 +15,6 @@
 /vbmeta_system             emmc                /dev/block/bootdevice/by-name/vbmeta_system            flags=display="vbmeta_system";backup=1;flashimg=1;slotselect
 /misc                      emmc                /dev/block/bootdevice/by-name/misc                     flags=display="misc"
 
-# Persistent Firmware & Properties
-/persist                   ext4                /dev/block/bootdevice/by-name/persist                  flags=display="persist"
-/persist_image             emmc                /dev/block/bootdevice/by-name/persist                  flags=display="persist";flashimg=1;backup=1
-
 # Firmware partitions
 /modem                     ext4                /dev/block/bootdevice/by-name/modem                    flags=display="modem";fsflags="ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0 wait";slotselect
 /dsp                       ext4                /dev/block/bootdevice/by-name/dsp                      flags=display="dsp";slotselect
@@ -29,5 +25,5 @@
 /spunvm                    vfat                /dev/block/bootdevice/by-name/spunvm                   flags=display="spunvm";backup=1;fsflags="rw,noatime,shortname=lower,uid=1000,gid=1000,dmask=007,fmask=007,context=u:object_r:spunvm_file:s0 wait"
 
 # Removable storage
-/sdcard1                   auto               /dev/block/mmcblk0p1         /dev/block/mmcblk0        flags=fsflags=utf8;display="microsd";storage;wipeingui;removable
-/usbotg                    auto               /dev/block/sdc1              /dev/block/sdc            flags=fsflags=utf8;display="otg";storage;wipeingui;removable
+/sdcard1                   auto               /dev/block/mmcblk1p1         /dev/block/mmcblk1        flags=fsflags=utf8;display="microsd";storage;wipeingui;removable
+/usbotg                    auto               /dev/block/sdd1              /dev/block/sdd            flags=fsflags=utf8;display="otg";storage;wipeingui;removable

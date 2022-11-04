@@ -1,53 +1,53 @@
-# twrp_device_sony_pdx20x
+# twrp_device_sony_pdx215
 
-For building TWRP for Sony Xperia mark II series
+For building TWRP for Sony Xperia mark III series
 
-TWRP device tree for Sony Xperia mark II series
+TWRP device tree for Sony Xperia mark III series
 
-The Sony Xperia mark II series (codenamed _"pdx203 & pdx204 & pdx206"_) are flagship smartphones from Sony.
+The Sony Xperia Mark III series (codenamed _"pdx214 & pdx215 & pdx217"_) are flagship smartphones from Sony.
 
-Sony Xperia 1 II was announced and released in February 2020.
+Sony Xperia 1 III was announced and released in August 2021.
 
-Sony Xperia 5 II was announced and released in September 2020.
+Sony Xperia 5 III was announced and released in October 2021.
 
-Sony Xperia pro was announced and released in February 2020.
+Sony Xperia pro-i was announced and released in December 2021.
 
 ## Device specifications
 
-|                  Device | Xperia 1 II (Mark 2)                    |
+|                  Device | Xperia 1 III (Mark 3)                   |
 | ----------------------: | :-------------------------------------- |
-|                     SoC | Qualcomm SM8250 Snapdragon 865          |
-|                     CPU | 8x Qualcomm® Kryo™ 585 up to 2.84GHz    |
-|                     GPU | Adreno 650                              |
-|                  Memory | 8GB / 12GB (LPDDR5)                     |
+|                     SoC | Qualcomm SM8350 Snapdragon 888          |
+|                     CPU | 8x Qualcomm® Kryo™ 680 up to 2.84GHz    |
+|                     GPU | Adreno 660                              |
+|                  Memory | 12GB (LPDDR5)                           |
 | Shipped Android version | 10                                      |
-|                 Storage | 256GB UFS 3.0 flash storage             |
-|                 Battery | Non-removable Li-Po 4000mAh             |
-|              Dimensions | 158 x 68 x 8 mm (6.22 x 2.68 x 0.31 in) |
+|                 Storage | 256GB / 512GB UFS 3.0 flash storage     |
+|                 Battery | Non-removable Li-Po 4500mAh             |
+|              Dimensions | 165 x 71 x 8.2mm (6.50 x 2.80 x 0.32in) |
 |                 Display | 1644 x 3840 pixels, 21:9 6.5 inches     |
 
-|                  Device | Xperia 5 II (Mark 2)                    |
+|                  Device | Xperia 5 III (Mark 3)                   |
 | ----------------------: | :-------------------------------------- |
-|                     SoC | Qualcomm SM8250 Snapdragon 865          |
-|                     CPU | 8x Qualcomm® Kryo™ 585 up to 2.84GHz    |
-|                     GPU | Adreno 650                              |
+|                     SoC | Qualcomm SM8350 Snapdragon 888          |
+|                     CPU | 8x Qualcomm® Kryo™ 680 up to 2.84GHz    |
+|                     GPU | Adreno 660                              |
 |                  Memory | 8GB (LPDDR5)                            |
 | Shipped Android version | 10                                      |
 |                 Storage | 128GB / 256GB UFS 3.0 flash storage     |
-|                 Battery | Non-removable Li-Ion 4000mAh            |
-|              Dimensions | 158 x 68 x 8 mm (6.22 x 2.68 x 0.31 in) |
+|                 Battery | Non-removable Li-Ion 4500mAh            |
+|              Dimensions | 157 x 68 x 8.2mm (6.18 x 2.68 x 0.32in) |
 |                 Display | 1080 x 2520 pixels, 21:9 6.1 inches     |
 
-|                  Device | Xperia Pro                              |
+|                  Device | Xperia Pro-I                            |
 | ----------------------: | :-------------------------------------- |
-|                     SoC | Qualcomm SM8250 Snapdragon 865          |
-|                     CPU | 8x Qualcomm® Kryo™ 585 up to 2.84GHz    |
-|                     GPU | Adreno 650                              |
+|                     SoC | Qualcomm SM8350 Snapdragon 888          |
+|                     CPU | 8x Qualcomm® Kryo™ 680 up to 2.84GHz    |
+|                     GPU | Adreno 660                              |
 |                  Memory | 12GB (LPDDR5)                           |
 | Shipped Android version | 10                                      |
 |                 Storage | 512GB UFS 3.0 flash storage             |
-|                 Battery | Non-removable Li-Po 4000mAh             |
-|              Dimensions | 158 x 68 x 8 mm (6.22 x 2.68 x 0.31 in) |
+|                 Battery | Non-removable Li-Po 4500mAh             |
+|              Dimensions | 166 x 72 x 8.9mm (6.54 x 2.83 x 0.35in) |
 |                 Display | 1644 x 3840 pixels, 21:9 6.5 inches     |
 
 ## Features
@@ -58,13 +58,10 @@ Sony Xperia pro was announced and released in February 2020.
 - **Decryption** (Android 11)
 - ADB
 - MTP
-- OTG
+
+**Not Working**
 - Vibration
-
-**Notes**
-
-- Xperia pro **doesn't have proper kernel source yet** because device itself is expensive and rare, so it is placeholder until someone got it
-- Mark 2 series using Virtual A/B (vAB) instead super partitions
+- OTG
 
 ## Thanks
 

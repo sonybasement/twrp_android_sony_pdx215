@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013,2016, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2013,2016,2020 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -32,20 +32,18 @@
 /******************************************************************************
  * INCLUDE SECTION
  ******************************************************************************/
+#include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
-#ifndef _GENERIC_KERNEL_HEADERS
-#include <scsi/ufs/ioctl.h>
-#include <scsi/ufs/ufs.h>
-#endif
 #include <unistd.h>
 #include <linux/fs.h>
 #include <limits.h>
 #include <dirent.h>
 #include <linux/kernel.h>
+#include <asm/byteorder.h>
 #include <map>
 #include <vector>
 #include <string>
@@ -76,8 +74,6 @@
 #define XBL_AB_SECONDARY    "/dev/block/bootdevice/by-name/xbl_b"
 /* GPT defines */
 #define MAX_LUNS                    26
-//Size of the buffer that needs to be passed to the UFS ioctl
-#define UFS_ATTR_DATA_SIZE          32
 //This will allow us to get the root lun path from the path to the partition.
 //i.e: from /dev/block/sdaXXX get /dev/block/sda. The assumption here is that
 //the boot critical luns lie between sda to sdz which is acceptable because
@@ -129,6 +125,7 @@ struct update_data {
      uint32_t num_valid_entries;
 };
 
+int32_t set_boot_lun(char *sg_dev,uint8_t boot_lun_id);
 /******************************************************************************
  * FUNCTIONS
  ******************************************************************************/
@@ -244,11 +241,11 @@ static int gpt_boot_chain_swap(const uint8_t *pentries_start,
         uint8_t *ptn_entry;
         uint8_t *ptn_bak_entry;
         uint8_t ptn_swap[PTN_ENTRY_SIZE];
-        //Skip the xbl, multiimgoem, multiimgqti partitions on UFS devices. That is handled
+        //Skip the xbl partition on UFS devices. That is handled
         //seperately.
-        if ((gpt_utils_is_ufs_device() && !strncmp(ptn_swap_list[i],PTN_XBL,strlen(PTN_XBL)))
-            || !strncmp(ptn_swap_list[i],PTN_MULTIIMGOEM,strlen(PTN_MULTIIMGOEM))
-            || !strncmp(ptn_swap_list[i],PTN_MULTIIMGQTI,strlen(PTN_MULTIIMGQTI)))
+        if (gpt_utils_is_ufs_device() && !strncmp(ptn_swap_list[i],
+                                PTN_XBL,
+                                strlen(PTN_XBL)))
             continue;
 
         ptn_entry = gpt_pentry_seek(ptn_swap_list[i], pentries_start,
@@ -612,53 +609,7 @@ error:
         return -1;
 }
 
-int set_boot_lun(char *sg_dev, uint8_t boot_lun_id)
-{
-#ifndef _GENERIC_KERNEL_HEADERS
-        int fd = -1;
-        int rc;
-        struct ufs_ioctl_query_data *data = NULL;
-        size_t ioctl_data_size = sizeof(struct ufs_ioctl_query_data) + UFS_ATTR_DATA_SIZE;
 
-        data = (struct ufs_ioctl_query_data*)malloc(ioctl_data_size);
-        if (!data) {
-                fprintf(stderr, "%s: Failed to alloc query data struct\n",
-                                __func__);
-                goto error;
-        }
-        memset(data, 0, ioctl_data_size);
-        data->opcode = UPIU_QUERY_OPCODE_WRITE_ATTR;
-        data->idn = QUERY_ATTR_IDN_BOOT_LU_EN;
-        data->buf_size = UFS_ATTR_DATA_SIZE;
-        data->buffer[0] = boot_lun_id;
-        fd = open(sg_dev, O_RDWR);
-        if (fd < 0) {
-                fprintf(stderr, "%s: Failed to open %s(%s)\n",
-                                __func__,
-                                sg_dev,
-                                strerror(errno));
-                goto error;
-        }
-        rc = ioctl(fd, UFS_IOCTL_QUERY, data);
-        if (rc) {
-                fprintf(stderr, "%s: UFS query ioctl failed(%s)\n",
-                                __func__,
-                                strerror(errno));
-                goto error;
-        }
-        close(fd);
-        free(data);
-        return 0;
-error:
-        if (fd >= 0)
-                close(fd);
-        if (data)
-                free(data);
-        return -1;
-#else
-	return 0;
-#endif
-}
 
 //Swtich betwieen using either the primary or the backup
 //boot LUN for boot. This is required since UFS boot partitions
@@ -732,6 +683,7 @@ int gpt_utils_set_xbl_boot_partition(enum boot_chain chain)
                                 __func__);
                 goto error;
         }
+        /* set boot lun using /dev/sg or /dev/ufs-bsg* */
         if (set_boot_lun(sg_dev_node, boot_lun_id)) {
                 fprintf(stderr, "%s: Failed to set xblbak as boot partition\n",
                                 __func__);
@@ -1020,9 +972,9 @@ int prepare_boot_update(enum boot_update_stage stage)
                         //of being loaded based on well known GUID'S.
                         //We take care of switching the UFS boot LUN
                         //explicitly later on.
-                        if (!strncmp(ptn_swap_list[i],PTN_XBL,strlen(PTN_XBL))
-                            || !strncmp(ptn_swap_list[i],PTN_MULTIIMGOEM,strlen(PTN_MULTIIMGOEM))
-                            || !strncmp(ptn_swap_list[i],PTN_MULTIIMGQTI,strlen(PTN_MULTIIMGQTI)))
+                        if (!strncmp(ptn_swap_list[i],
+                                                PTN_XBL,
+                                                strlen(PTN_XBL)))
                                 continue;
                         snprintf(buf, sizeof(buf),
                                         "%s/%sbak",

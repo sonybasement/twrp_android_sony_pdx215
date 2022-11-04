@@ -7,3 +7,6 @@ vendor.gatekeeper.disable_spu=true
 
 # Battery Property
 ro.charger.enable_suspend=1
+
+# Reset allocatable space
+ro.dynamic.full_size=6169821184

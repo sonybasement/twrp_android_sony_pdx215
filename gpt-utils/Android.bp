@@ -16,7 +16,7 @@
 
 
 cc_library {
-    name: "libgptutils.sony_sm8250",
+    name: "libgptutils.sony",
     vendor: true,
     recovery_available: true,
     shared_libs: [
@@ -27,9 +27,11 @@ cc_library {
     cflags: [
         "-Wall",
         "-Werror",
+        "-D_BSG_FRAMEWORK_KERNEL_HEADERS",
     ],
     srcs: [
         "gpt-utils.cpp",
+        "recovery-ufs-bsg.cpp",
     ],
     owner: "qti",
     header_libs: [

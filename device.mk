@@ -26,6 +26,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 # Configure Virtual A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
+# Configure SDCard replacement functionality
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
 # Configure twrp
 $(call inherit-product, vendor/twrp/config/common.mk)
 
@@ -34,12 +37,15 @@ AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
     boot \
-    system \
+    dtbo \
+    odm \
     product \
-    vendor \
+    system \
+    system_ext \
     vbmeta \
     vbmeta_system \
-    dtbo
+    vendor \
+    vendor_boot
     
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -61,20 +67,22 @@ AB_OTA_POSTINSTALL_CONFIG += \
     POSTINSTALL_OPTIONAL_vendor=true
 
 PRODUCT_PACKAGES += \
-    bootctrl.sony_sm8250 \
-    bootctrl.sony_sm8250.recovery \
-    android.hardware.boot@1.0-service \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-impl.recovery 
+    bootctrl.sony_sm8350.recovery \
+    android.hardware.boot@1.1-impl-qti.recovery
+
+PRODUCT_HOST_PACKAGES += \
+    libandroidicu
+
+# fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd
 
 # SHIPPING API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
-# Props for a Successful Casefold Format 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.crypto.dm_default_key.options_format.version=2 \
-    ro.crypto.volume.metadata.method=dm-default-key \
-    ro.crypto.volume.options=::v2 
+# VNDK API
+PRODUCT_TARGET_VNDK_VERSION := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -84,4 +92,4 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # PRODUCT_RELEASE_NAME ro.twrp.device.name
 PRODUCT_PROPERTY_OVERRIDES += ro.twrp.device.name=$(PRODUCT_RELEASE_NAME)
-TWRP_REQUIRED_MODULES += sony_touchscreen
+TWRP_REQUIRED_MODULES += sony_firmware
