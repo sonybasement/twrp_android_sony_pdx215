@@ -15,4 +15,5 @@
 #
 
 PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/twrp_pdx214.mk \
     $(LOCAL_DIR)/twrp_pdx215.mk
