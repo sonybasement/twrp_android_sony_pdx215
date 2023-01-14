@@ -32,19 +32,26 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Configure twrp
 $(call inherit-product, vendor/twrp/config/common.mk)
 
+# SHIPPING API
+PRODUCT_SHIPPING_API_LEVEL := 30
+
+# VNDK API
+PRODUCT_TARGET_VNDK_VERSION := 31
+
 # A/B support
 AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
-    odm \
     product \
     system \
     system_ext \
     vbmeta \
     vbmeta_system \
+    odm \
     vendor \
+    vendor_dlkm \
     vendor_boot
     
 PRODUCT_PACKAGES += \
@@ -73,16 +80,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_HOST_PACKAGES += \
     libandroidicu
 
+# tzdata
+PRODUCT_PACKAGES_ENG += \
+    tzdata_twrp
+
 # fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     fastbootd
-
-# SHIPPING API
-PRODUCT_SHIPPING_API_LEVEL := 30
-
-# VNDK API
-PRODUCT_TARGET_VNDK_VERSION := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
