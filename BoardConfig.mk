@@ -157,6 +157,7 @@ TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_APEX := true
 PLATFORM_VERSION := 12
 PLATFORM_VERSION_LAST_STABLE := 12
+TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko q6_dlkm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko somc_battchg_ext.ko"
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone20/temp"
 TW_BATTERY_SYSFS_WAIT_SECONDS := 5
 
